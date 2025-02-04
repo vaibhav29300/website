@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forever Love</title>
+  <style>
+    /* --- Basic Reset & Body Style --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #fff9ef;
+      font-family: "Times New Roman", serif;
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+
+    /* --- Heart Container --- */
+    .heart {
+      margin: 0 auto 20px auto;
+      width: 300px;
+      height: 300px;
+      background: url("https://raw.githubusercontent.com/iampriyanshu/assets/main/flower-heart.png")
+        no-repeat center / contain;
+    }
+
+    /* --- Heading & Timer Text --- */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #d35400;
+    }
+    #countdown {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    /* --- Poem / Message --- */
+    .message {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      white-space: pre-line; /* helps keep line breaks in poems */
+    }
+    .message p {
+      margin-bottom: 1em;
+    }
+
+    /* --- Emphasis Text --- */
+    .emphasis {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Title -->
+  <h1>प्यार सदा FOREVER</h1>
+
+  <!-- Heart Image -->
+  <div class="heart"></div>
+
+  <!-- Countdown / Count-up Timer -->
+  <div id="countdown">Loading...</div>
+
+  <!-- Poem / Message -->
+  <div class="message">
+    <p>My Girl,</p>
+    <p>
+      We first met on May 7, 2017.<br />
+      That day felt like magic and changed my life forever.<br />
+      You make my world brighter, my heart lighter.<br />
+      The more I see you, the stronger my love grows.<br />
+      Every day with you is a gift.<br />
+      Thank you for being mine.
+    </p>
+    <p>
+      <span class="emphasis">I LOVE YOU SO MUCH</span><br />
+      - Your Name
+    </p>
+  </div>
+
+  <!-- JavaScript for Timer -->
+  <script>
+    // Example: Counting from a specific date (e.g., May 7, 2017) up to the current moment
+    const startDate = new Date("May 7, 2017 00:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = now - startDate; // how many ms have passed since startDate
+
+      // Time calculations
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display result
+      document.getElementById("countdown").innerText =
+        days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds";
+    }
+
+    // Update timer every second
+    setInterval(updateTimer, 1000);
+    // Initial call
+    updateTimer();
+  </script>
+</body>
+</html>
