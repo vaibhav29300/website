@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Eternal Rose for [Your GF's Name]</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff0077, #ff1493, #ff69b4);
+            overflow: hidden;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rose {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            animation: bloom 2s forwards;
+        }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(45deg, #ff3366, #ff0066);
+            border-radius: 0 200px 200px 200px;
+            transform-origin: bottom left;
+            box-shadow: 0 0 15px rgba(255,0,102,0.3);
+        }
+
+        .message {
+            color: white;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s 2s forwards;
+            margin-top: 30px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes bloom {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Add more petals and animations */
+        .petal:nth-child(1) { width: 60px; height: 80px; transform: rotate(-30deg); top: 120px; left: 120px; }
+        .petal:nth-child(2) { width: 70px; height: 90px; transform: rotate(10deg); top: 110px; left: 100px; }
+        /* Add more petal styles... */
+
+        .heart {
+            position: absolute;
+            animation: float 6s infinite linear;
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); }
+            100% { transform: translateY(-100vh) scale(1.5); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div class="container">
+        <div class="rose" id="rose">
+            <!-- Petals will be added dynamically -->
+        </div>
+        <div class="message">
+            <h1>To My Forever Valentine, [Your GF's Name]</h1>
+            <p>Like this rose, my love for you grows more beautiful with each passing day.<br>
+            You're the sunshine that makes my world bloom.<br>
+            Happy Rose Day, my eternal love. 🌹❤️</p>
+            <p>Forever Yours,<br>[Your Name]</p>
+        </div>
+    </div>
+
+    <script>
+        // Create rose petals
+        function createRose() {
+            const rose = document.getElementById('rose');
+            for (let i = 0; i < 25; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.animation = `petalAppear ${0.5 + i*0.1}s ease-out`;
+                rose.appendChild(petal);
+            }
+        }
+
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Initialize
+        window.onload = function() {
+            createRose();
+            createHearts();
+            
+            // Add romantic music (optional)
+            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3');
+            audio.loop = true;
+            audio.play().catch(() => { /* Handle autoplay restrictions */ });
+        };
+    </script>
+</body>
+</html>
