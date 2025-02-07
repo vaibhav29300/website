@@ -28,9 +28,21 @@
             animation: bloom 2s forwards;
         }
 
-        .rose svg {
+        .rose-image {
             width: 100%;
             height: auto;
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
+            animation: bloom 2s forwards;
+        }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(45deg, #ff3366, #ff0066);
+            border-radius: 0 200px 200px 200px;
+            transform-origin: bottom left;
+            box-shadow: 0 0 15px rgba(255,0,102,0.3);
         }
 
         .message {
@@ -59,6 +71,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .heart {
+            position: absolute;
+            animation: float 6s infinite linear;
+            opacity: 0.5;
+        }
+
         @keyframes float {
             0% { transform: translateY(100vh) scale(0.5); }
             100% { transform: translateY(-100vh) scale(1.5); }
@@ -70,10 +88,8 @@
     <div class="hearts" id="hearts"></div>
     <div class="container">
         <div class="rose" id="rose">
-            <!-- SVG Rose -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <!-- Add SVG path data for the rose -->
-            </svg>
+            <img src="your-image-url.jpg" alt="A Beautiful Rose" class="rose-image">
+            <!-- Petals will be added dynamically -->
         </div>
         <div class="message">
             <h1>To My Forever Valentine, Ruchu</h1>
@@ -85,6 +101,18 @@
     </div>
 
     <script>
+        // Create rose petals
+        function createRose() {
+            const rose = document.getElementById('rose');
+            for (let i = 0; i < 25; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.animation = `petalAppear ${0.5 + i*0.1}s ease-out`;
+                rose.appendChild(petal);
+            }
+        }
+
+        // Create floating hearts
         function createHearts() {
             const heartsContainer = document.getElementById('hearts');
             for (let i = 0; i < 50; i++) {
@@ -97,8 +125,12 @@
             }
         }
 
+        // Initialize
         window.onload = function() {
+            createRose();
             createHearts();
+
+            // Add romantic music (optional)
             const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3');
             audio.loop = true;
             audio.play().catch(() => { /* Handle autoplay restrictions */ });
